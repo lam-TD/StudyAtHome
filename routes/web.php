@@ -11,6 +11,8 @@
 |
 */
 
+Route::get('lang/{lang}', 'LangController@changeLang')->name('lang');
+
 Route::get('/', 'BlogController@index');
 Route::get('/posts/{post}', 'BlogController@post');
 Route::post('/posts/{post}/comment', 'BlogController@comment')->middleware('auth');

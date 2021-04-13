@@ -6,7 +6,7 @@
 
             <div class="col-md-3">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Posts</div>
+                    <div class="panel-heading">{{ trans('home.posts') }} Posts</div>
 
                     <div class="panel-body">
                         <h1>{{ $posts }}</h1>

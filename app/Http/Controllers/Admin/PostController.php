@@ -60,7 +60,7 @@ class PostController extends Controller
             return Tag::firstOrCreate(['name' => $tag])->id;
         });
 
-        if ($request->file('file')->isValid()) {
+        if ($request->has('file') && $request->file('file')->isValid()) {
             $file = $request->file('file');
             $fileName = $file->getClientOriginalName();
             $fileSize = $file->getSize();
