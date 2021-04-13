@@ -1,5 +1,5 @@
 <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
-    {!! Form::label('title', 'Title', ['class' => 'col-md-2 control-label']) !!}
+    {!! Form::label('title', trans('posts.tbl_title'), ['class' => 'col-md-2 control-label']) !!}
 
     <div class="col-md-8">
         {!! Form::text('title', null, ['class' => 'form-control', 'required', 'autofocus']) !!}
@@ -11,7 +11,7 @@
 </div>
 
 <div class="form-group{{ $errors->has('body') ? ' has-error' : '' }}">
-    {!! Form::label('body', 'Body', ['class' => 'col-md-2 control-label']) !!}
+    {!! Form::label('body', trans('posts.tbl_body'), ['class' => 'col-md-2 control-label']) !!}
 
     <div class="col-md-8">
         {!! Form::textarea('body', null, ['class' => 'form-control', 'required']) !!}
@@ -23,7 +23,7 @@
 </div>
 
 <div class="form-group{{ $errors->has('file') ? ' has-error' : '' }}">
-    {!! Form::label('file', 'Files', ['class' => 'col-md-2 control-label']) !!}
+    {!! Form::label('file', trans('posts.tbl_file'), ['class' => 'col-md-2 control-label']) !!}
 
     <div class="col-md-8">
         {!! Form::file('file', null, ['class' => 'form-control', '']) !!}
@@ -35,7 +35,7 @@
 </div>
 
 <div class="form-group{{ $errors->has('category_id') ? ' has-error' : '' }}">
-    {!! Form::label('category_id', 'Category', ['class' => 'col-md-2 control-label']) !!}
+    {!! Form::label('category_id', trans('posts.tbl_category'), ['class' => 'col-md-2 control-label']) !!}
 
     <div class="col-md-8">
         {!! Form::select('category_id', $categories, null, ['class' => 'form-control', 'required']) !!}
@@ -55,7 +55,7 @@
 @endphp
 
 <div class="form-group{{ $errors->has('tags') ? ' has-error' : '' }}">
-    {!! Form::label('tags', 'Tag', ['class' => 'col-md-2 control-label']) !!}
+    {!! Form::label('tags', trans('posts.tbl_tags'), ['class' => 'col-md-2 control-label']) !!}
 
     <div class="col-md-8">
         {!! Form::select('tags[]', $tags, $tag, ['class' => 'form-control select2-tags', 'required', 'multiple']) !!}

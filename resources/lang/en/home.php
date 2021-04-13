@@ -14,8 +14,14 @@ return [
     */
 
     'posts' => 'Posts',
+    'post_by' => 'by',
     'categories' => 'Categories',
     'comments' => 'Comments',
     'tags' => 'Tags',
     'users' => 'Users',
+    'btn_search' => 'Search',
+    'placeholder_search' => 'Search...',
+    'btn_see_more' => 'See more',
+    'txt_not_found' => 'Not Found!!',
+    'txt_no_post' => 'Sorry! No post found.',
 ];

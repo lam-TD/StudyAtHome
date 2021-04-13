@@ -8,9 +8,9 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h2>
-                            Create Post
+                            {{ trans('posts.txt_create_new') }}
 
-                            <a href="{{ url('admin/posts') }}" class="btn btn-default pull-right">Go Back</a>
+                            <a href="{{ url('admin/posts') }}" class="btn btn-default pull-right">{{ trans('posts.btn_go_back') }}</a>
                         </h2>
                     </div>
 
@@ -28,7 +28,7 @@
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-2">
                                 <button type="submit" class="btn btn-primary">
-                                    Create
+                                    {{ trans('posts.btn_create') }}
                                 </button>
                             </div>
                         </div>
