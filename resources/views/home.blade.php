@@ -6,7 +6,7 @@
 
             <div class="col-md-3">
                 <div class="panel panel-default">
-                    <div class="panel-heading">{{ trans('home.posts') }} Posts</div>
+                    <div class="panel-heading">{{ trans('home.posts') }}</div>
 
                     <div class="panel-body">
                         <h1>{{ $posts }}</h1>
@@ -16,27 +16,28 @@
 
             <div class="col-md-3">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Comments</div>
+                    <div class="panel-heading">{{ trans('home.comments') }}</div>
 
                     <div class="panel-body">
                         <h1>{{ $comments }}</h1>
                     </div>
                 </div>
             </div>
-
+            @if($is_admin)
             <div class="col-md-3">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Tags</div>
+                    <div class="panel-heading">{{ trans('home.users') }}</div>
 
                     <div class="panel-body">
-                        <h1>{{ $tags }}</h1>
+                        <h1>{{ $users }}</h1>
                     </div>
                 </div>
             </div>
+            @endif
 
             <div class="col-md-3">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Categories</div>
+                    <div class="panel-heading">{{ trans('home.categories') }}</div>
 
                     <div class="panel-body">
                         <h1>{{ $categories }}</h1>

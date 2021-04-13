@@ -45,11 +45,11 @@
                                                         $label = trans('posts.btn_publish');
                                                     }
                                                 @endphp
-                                                <a href="{{ url("/admin/posts/{$post->id}/publish") }}" data-method="PUT" data-token="{{ csrf_token() }}" data-confirm="Are you sure?" class="btn btn-xs btn-warning">{{ $label }}</a>
+                                                <a href="{{ url("/admin/posts/{$post->id}/publish") }}" data-method="PUT" data-token="{{ csrf_token() }}" data-confirm="{{ trans('users.btn_confirm') }}" class="btn btn-xs btn-warning">{{ $label }}</a>
                                             @endif
                                             <a href="{{ url("/admin/posts/{$post->id}") }}" class="btn btn-xs btn-success">{{ trans('posts.btn_show') }}</a>
                                             <a href="{{ url("/admin/posts/{$post->id}/edit") }}" class="btn btn-xs btn-info">{{ trans('posts.btn_edit') }}</a>
-                                            <a href="{{ url("/admin/posts/{$post->id}") }}" data-method="DELETE" data-token="{{ csrf_token() }}" data-confirm="Are you sure?" class="btn btn-xs btn-danger">{{ trans('posts.btn_delete') }}</a>
+                                            <a href="{{ url("/admin/posts/{$post->id}") }}" data-method="DELETE" data-token="{{ csrf_token() }}" data-confirm="{{ trans('users.btn_confirm') }}" class="btn btn-xs btn-danger">{{ trans('posts.btn_delete') }}</a>
                                         </td>
                                     </tr>
                                 @empty

@@ -23,7 +23,9 @@
                             @if(!empty($post->files_list))
                                 <p>
                                     @forelse ($post->files_list as $file)
-                                        <span class="label label-default">{{ $file['file_name_origin'] }} {{ $file['file_size'] }}</span>
+                                        <a href="{{url($file['url_download'])}}" download class="btn btn-sm btn-warning">{{ $file['file_name_origin'] }}
+                                            <span class="badge">{{ $file['file_size'] }}</span>
+                                        </a>
                                     @empty
                                     @endforelse
                                 </p>

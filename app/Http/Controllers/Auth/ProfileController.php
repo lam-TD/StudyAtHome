@@ -20,7 +20,7 @@ class ProfileController extends Controller
     {
         if ($request->isMethod('post')) {
             $request->validate([
-                'name' => 'required|min:6|max:20',
+                'name' => 'required|min:5|max:20',
             ]);
 
             $user = User::find(auth()->user()->getAuthIdentifier());
@@ -28,8 +28,10 @@ class ProfileController extends Controller
 
             if ($user->save()) {
                 $is_update_success = 'Cập nhật thông tin thành công';
-                return view('admin.profile.edit', compact(['user', 'is_update_success']));
+//                return view('admin.profile.edit', compact(['user', 'is_update_success']));
             }
+            flash()->overlay(trans('users.notifi_updated_success'));
+            return redirect('profile');
         } else {
             $user = auth()->user()->loadCount('posts', 'comments');
             return view('admin.profile.edit', compact('user'));

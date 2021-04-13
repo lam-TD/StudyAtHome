@@ -39,4 +39,11 @@ return [
     'txt_no_post_available' => 'No post available.',
     'txt_create_new' => 'Create Post',
     'btn_go_back' => 'Go Back',
+    'txt_file_list' => 'File list',
+    'txt_edit' => 'Edit Post',
+    'btn_update' => 'Update',
+    'notifi_created_success' => 'Post created successfully.',
+    'notifi_updated_success' => 'Post updated successfully.',
+    'notifi_delete' => 'Post deleted successfully.',
+    'notifi_change' => 'Post changed successfully.',
 ];

@@ -53,7 +53,7 @@
                                 @if(Session::has('lang'))
                                     {{ strtoupper(Session::get('lang')) }}
                                 @else
-                                    VI
+                                    EN
                                 @endif
                                     <span class="caret"></span>
                             </a>

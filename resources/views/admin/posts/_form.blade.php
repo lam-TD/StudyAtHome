@@ -14,7 +14,7 @@
     {!! Form::label('body', trans('posts.tbl_body'), ['class' => 'col-md-2 control-label']) !!}
 
     <div class="col-md-8">
-        {!! Form::textarea('body', null, ['class' => 'form-control', 'required']) !!}
+        {!! Form::textarea('body', null, ['class' => 'form-control', 'required', 'id' => 'editor1']) !!}
 
         <span class="help-block">
             <strong>{{ $errors->first('body') }}</strong>
@@ -33,6 +33,19 @@
         </span>
     </div>
 </div>
+
+@if(!empty($files))
+    <div class="form-group">
+        {!! Form::label('File list', trans('posts.txt_file_list'), ['class' => 'col-md-2 control-label']) !!}
+        <div class="col-md-8">
+            <ul class="list-group">
+                @foreach($files as $file)
+                    <li class="list-group-item">{{ $file['file_name_origin'] }}</li>
+                @endforeach
+            </ul>
+        </div>
+    </div>
+@endif
 
 <div class="form-group{{ $errors->has('category_id') ? ' has-error' : '' }}">
     {!! Form::label('category_id', trans('posts.tbl_category'), ['class' => 'col-md-2 control-label']) !!}

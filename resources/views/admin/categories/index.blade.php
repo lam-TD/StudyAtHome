@@ -8,9 +8,9 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h2>
-                            Categories
+                            {{ trans('categories.txt_categories') }}
 
-                            <a href="{{ url('admin/categories/create') }}" class="btn btn-default pull-right">Create New</a>
+                            <a href="{{ url('admin/categories/create') }}" class="btn btn-default pull-right">{{ trans('categories.btn_Create') }}</a>
                         </h2>
                     </div>
 
@@ -18,9 +18,9 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Post Count</th>
-                                    <th>Action</th>
+                                    <th>{{ trans('categories.tbl_Name') }}</th>
+                                    <th>{{ trans('categories.tbl_PostCount') }}</th>
+                                    <th>{{ trans('categories.tbl_Action') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -29,13 +29,13 @@
                                         <td>{{ $category->name }}</td>
                                         <td>{{ $category->posts_count }}</td>
                                         <td>
-                                            <a href="{{ url("/admin/categories/{$category->id}/edit") }}" class="btn btn-xs btn-info">Edit</a>
-                                            <a href="{{ url("/admin/categories/{$category->id}") }}" data-method="DELETE" data-token="{{ csrf_token() }}" data-confirm="Are you sure?" class="btn btn-xs btn-danger">Delete</a>
+                                            <a href="{{ url("/admin/categories/{$category->id}/edit") }}" class="btn btn-xs btn-info">{{ trans('categories.tbl_Edit') }}</a>
+                                            <a href="{{ url("/admin/categories/{$category->id}") }}" data-method="DELETE" data-token="{{ csrf_token() }}" data-confirm="{{ trans('users.btn_confirm') }}" class="btn btn-xs btn-danger">{{ trans('categories.tbl_Delete') }}</a>
                                         </td>
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="2">No category available.</td>
+                                        <td colspan="2">{{ trans('categories.txt_no_categories') }}</td>
                                     </tr>
                                 @endforelse
                             </tbody>

@@ -8,9 +8,9 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h2>
-                            Tags
+                            {{ trans('common.txt_tags') }}
 
-                            <a href="{{ url('admin/tags/create') }}" class="btn btn-default pull-right">Create New</a>
+                            <a href="{{ url('admin/tags/create') }}" class="btn btn-default pull-right">{{ trans('common.btn_create') }}</a>
                         </h2>
                     </div>
 
@@ -18,8 +18,8 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Action</th>
+                                    <th>{{ trans('common.tbl_name') }}</th>
+                                    <th>{{ trans('common.tbl_action') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -27,13 +27,13 @@
                                     <tr>
                                         <td>{{ $tag->name }}</td>
                                         <td>
-                                            <a href="{{ url("/admin/tags/{$tag->id}/edit") }}" class="btn btn-xs btn-info">Edit</a>
-                                            <a href="{{ url("/admin/tags/{$tag->id}") }}" data-method="DELETE" data-token="{{ csrf_token() }}" data-confirm="Are you sure?" class="btn btn-xs btn-danger">Delete</a>
+                                            <a href="{{ url("/admin/tags/{$tag->id}/edit") }}" class="btn btn-xs btn-info">{{ trans('common.btn_edit') }}</a>
+                                            <a href="{{ url("/admin/tags/{$tag->id}") }}" data-method="DELETE" data-token="{{ csrf_token() }}" data-confirm="{{ trans('users.btn_confirm') }}" class="btn btn-xs btn-danger">{{ trans('common.btn_delete') }}</a>
                                         </td>
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="2">No tag available.</td>
+                                        <td colspan="2">{{ trans('common.no_data') }}</td>
                                     </tr>
                                 @endforelse
                             </tbody>

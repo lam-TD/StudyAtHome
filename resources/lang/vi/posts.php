@@ -40,4 +40,11 @@ return [
     'txt_no_post_available' => 'Chưa có bài viết',
     'txt_create_new' => 'Thêm mới bài viết',
     'btn_go_back' => 'Trờ về trang trước',
+    'txt_file_list' => 'Danh sách tệp tin',
+    'txt_edit' => 'Chỉnh sửa bài viết',
+    'btn_update' => 'Cập nhật',
+    'notifi_created_success' => 'Thếm mới bài viết thành công.',
+    'notifi_updated_success' => 'Chỉnh sửa bài viết thành công.',
+    'notifi_delete' => 'Xóa thành công.',
+    'notifi_change' => 'Thay đổi trạng thái bài viết thành công.',
 ];

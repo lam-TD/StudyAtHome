@@ -24,9 +24,17 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with(['user', 'category', 'tags', 'comments'])
-            ->orderBy('created_at', 'desc')
-            ->paginate(10);
+        $is_admin = auth()->user()->is_admin;
+        if (! $is_admin) {
+            $posts = Post::with(['user', 'category', 'tags', 'comments'])
+                ->orderBy('created_at', 'desc')
+                ->where('user_id', auth()->user()->id)
+                ->paginate(10);
+        } else {
+            $posts = Post::with(['user', 'category', 'tags', 'comments'])
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+        }
 
         return view('admin.posts.index', compact('posts'));
     }
@@ -85,7 +93,7 @@ class PostController extends Controller
         }
 
         $post->tags()->attach($tagsId);
-        flash()->overlay('Post created successfully.');
+        flash()->overlay(trans('posts.notifi_created_success'));
 
         return redirect('/admin/posts');
     }
@@ -119,8 +127,9 @@ class PostController extends Controller
 
         $categories = Category::pluck('name', 'id')->all();
         $tags = Tag::pluck('name', 'name')->all();
+        $files = Files::where('post_id', $post->id)->get()->toArray();
 
-        return view('admin.posts.edit', compact('post', 'categories', 'tags'));
+        return view('admin.posts.edit', compact('post', 'categories', 'tags', 'files'));
     }
 
     /**
@@ -145,8 +154,30 @@ class PostController extends Controller
             return Tag::firstOrCreate(['name' => $tag])->id;
         });
 
+        if ($request->has('file')) {
+            $file = $request->file('file');
+            $fileName = $file->getClientOriginalName();
+            $fileSize = $file->getSize();
+            if ($fileSize < self::LIMIT_FILE_SIZE_UPLOAD_1_GB) {
+                if (! Storage::disk('public')->exists('files')) {
+                    Storage::disk('public')->makeDirectory('files');
+                }
+                $postId = $post->id;
+                $userId = auth()->user()->getAuthIdentifier();
+                $file->store("public/$userId".'_'.$postId);
+
+                Files::create([
+                    'file_name' => $request->file('file')->hashName(),
+                    'user_id' => $userId,
+                    'post_id' => $postId,
+                    'file_name_origin' => $fileName,
+                    'file_size' => $fileSize,
+                ]);
+            }
+        }
+
         $post->tags()->sync($tagsId);
-        flash()->overlay('Post updated successfully.');
+        flash()->overlay(trans('posts.notifi_updated_success'));
 
         return redirect('/admin/posts');
     }
@@ -166,7 +197,7 @@ class PostController extends Controller
         }
 
         $post->delete();
-        flash()->overlay('Post deleted successfully.');
+        flash()->overlay(trans('posts.notifi_delete'));
 
         return redirect('/admin/posts');
     }
@@ -175,7 +206,7 @@ class PostController extends Controller
     {
         $post->is_published = ! $post->is_published;
         $post->save();
-        flash()->overlay('Post changed successfully.');
+        flash()->overlay(trans('posts.notifi_change'));
 
         return redirect('/admin/posts');
     }

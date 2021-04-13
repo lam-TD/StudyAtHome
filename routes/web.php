@@ -16,9 +16,10 @@ Route::get('lang/{lang}', 'LangController@changeLang')->name('lang');
 Route::get('/', 'BlogController@index');
 Route::get('/posts/{post}', 'BlogController@post');
 Route::post('/posts/{post}/comment', 'BlogController@comment')->middleware('auth');
+Route::get('/posts/download/{file_id}', 'BlogController@download')->middleware('auth');
 
 Auth::routes();
-Route::get('/profile', 'Auth\\ProfileController@index')->middleware('auth');
+Route::get('/profile', 'Auth\\ProfileController@index')->middleware('auth')->name('profile');
 Route::get('/profile/update', 'Auth\\ProfileController@update')->middleware('auth');
 Route::post('/profile/update', 'Auth\\ProfileController@update')->middleware('auth');
 

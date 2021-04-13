@@ -15,7 +15,15 @@ class CommentController extends Controller
      */
     public function index()
     {
-        $comments = Comment::with('post')->paginate(10);
+        $is_admin = auth()->user()->is_admin;
+        if (! $is_admin) {
+            $comments = Comment::with('post')
+                ->where('user_id', auth()->user()->id)
+                ->paginate(10);
+        } else {
+            $comments = Comment::with('post')->paginate(10);
+        }
+
 
         return view('admin.comments.index', compact('comments'));
     }
@@ -35,7 +43,7 @@ class CommentController extends Controller
         }
 
         $comment->delete();
-        flash()->overlay('Comment deleted successfully.');
+        flash()->overlay(trans('comments.notifi_delete'));
 
         return redirect('/admin/comments');
     }

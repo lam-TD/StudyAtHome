@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Post;
 use App\Models\Tag;
+use App\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -27,10 +28,20 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = Post::count();
-        $comments = Comment::count();
-        $tags = Tag::count();
-        $categories = Category::count();
+        $is_admin = auth()->user()->is_admin;
+        if ($is_admin) {
+            $posts = Post::count();
+            $comments = Comment::count();
+            $tags = Tag::count();
+            $categories = Category::count();
+            $users = User::count();
+        } else {
+            $posts = Post::where('user_id', auth()->user()->id)->count();
+            $comments = Comment::where('user_id', auth()->user()->id)->count();
+            $tags = Tag::count();
+            $categories = Category::count();
+        }
+
 
         return view('home', get_defined_vars());
     }
