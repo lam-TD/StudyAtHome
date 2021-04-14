@@ -19,12 +19,13 @@
                         </div>
 
                         <div class="panel-body">
-                            <p>{!! str_limit($post->body, 200) !!}
-                            @if(!empty($post->files_list))
+                            <p>{!! str_limit($post->body) !!}
+                            @if(!empty($post->files))
                                 <p>
-                                    @forelse ($post->files_list as $file)
-                                        <a href="{{url($file['url_download'])}}" download class="btn btn-sm btn-warning">{{ $file['file_name_origin'] }}
-                                            <span class="badge">{{ $file['file_size'] }}</span>
+                                    @forelse ($post->files as $file)
+                                        <a href="{{ url('posts/download/'.$file['id']) }}" download class="btn btn-sm btn-warning">
+                                            {{ $file['file_name_origin'] }}
+                                            <span class="badge">{{ \App\Commons\ConvertByte::humanReadableBytes($file['file_size']) }}</span>
                                         </a>
                                     @empty
                                     @endforelse
